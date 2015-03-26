@@ -1,35 +1,45 @@
-<head>
-  <title>flex-cantor</title>
-</head>
+<!doctype HTML>
 
-<body>
-    {{#cantor max=6}}
-        <section>&nbsp;</section>
-    {{else}}
-        <div class="E">&nbsp;</div>
-    {{/cantor}}
-</body>
+<html>
+    <head>
+        <style>
+            body {
+                  margin: 0;
+                  overflow: hidden;
+                }
+        </style>
+    </head>
+    <body>
 
-<template name="cantor">
-    <div class="row">
-        {{> Template.contentBlock}}
-        {{#if more}}
-            <div class="flex">
-                {{#cantor max=max i=next}}
-                    {{> Template.contentBlock}}
-                {{else}}
-                    {{> Template.elseBlock}}
-                {{/cantor}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/polymer/0.5.5/polymer.js"></script>
 
-                {{> Template.elseBlock}}
-
-                {{#cantor max=max i=next}}
-                    {{> Template.contentBlock}}
-                {{else}}
-                    {{> Template.elseBlock}}
-                {{/cantor}}
+    <polymer-element name="flex-cantor" attributes="max i">
+      <template>
+        <style>
+          .e { border: 1px solid rgba(0,0,0,1); border-bottom: none; }
+          .c { height: {{100/max}}vh; background-color: tomato; }
+          .f { display: flex; }
+          *  { width: 100%; }
+        </style>
+        <div class="row">
+          <section class="c">&nbsp;</section>
+          <template if="{{i < max - 1}}">
+            <div class="f">
+              <flex-cantor max="{{max}}" i="{{i + 1}}"></flex-cantor>
+              <section class="e">&nbsp;</section>
+              <flex-cantor max="{{max}}" i="{{i + 1}}"></flex-cantor>
             </div>
-        {{/if}}
-    </div>
-</template>
+          </template>
+        </div>
+      </template>
+      <script>
+        Polymer({
+          i: 0,
+          max: 0
+        });
+      </script>
+    </polymer-element>
 
+    <flex-cantor max="6"></flex-cantor>
+
+</body>
