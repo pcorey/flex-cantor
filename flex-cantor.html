@@ -1,0 +1,36 @@
+<head>
+  <title>flex-cantor</title>
+</head>
+
+<body>
+    {{#cantor i=0}}
+        <section>&nbsp;</section>
+    {{/cantor}}
+</body>
+
+<!-- <template name="cantor">
+    {{#if more}}
+        {{> Template.contentBlock}}
+        <div class="row">
+            {{#cantor i=next}}
+                {{> Template.contentBlock}}
+                <div>&nbsp;</div>
+                {{> Template.contentBlock}}
+            {{/cantor}}
+        </div>
+    {{/if}}
+</template> -->
+
+<template name="cantor">
+    {{#if more}}
+        <div class="row">
+            {{> Template.contentBlock}}
+            <div class="flex">
+                {{#cantor i=next}} {{> Template.contentBlock}} {{/cantor}}
+                <div class="E">&nbsp;</div>
+                {{#cantor i=next}} {{> Template.contentBlock}} {{/cantor}}
+            </div>
+        </div>
+    {{/if}}
+</template>
+

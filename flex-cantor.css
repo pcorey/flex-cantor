@@ -1,0 +1,11 @@
+section {
+    background-color: tomato;
+}
+
+.flex {
+    display: flex;
+}
+
+section, div {
+    width: 100%;
+}
