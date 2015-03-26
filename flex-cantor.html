@@ -3,34 +3,33 @@
 </head>
 
 <body>
-    {{#cantor i=0}}
+    {{#cantor max=6}}
         <section>&nbsp;</section>
+    {{else}}
+        <div class="E">&nbsp;</div>
     {{/cantor}}
 </body>
 
-<!-- <template name="cantor">
-    {{#if more}}
-        {{> Template.contentBlock}}
-        <div class="row">
-            {{#cantor i=next}}
-                {{> Template.contentBlock}}
-                <div>&nbsp;</div>
-                {{> Template.contentBlock}}
-            {{/cantor}}
-        </div>
-    {{/if}}
-</template> -->
-
 <template name="cantor">
-    {{#if more}}
-        <div class="row">
-            {{> Template.contentBlock}}
+    <div class="row">
+        {{> Template.contentBlock}}
+        {{#if more}}
             <div class="flex">
-                {{#cantor i=next}} {{> Template.contentBlock}} {{/cantor}}
-                <div class="E">&nbsp;</div>
-                {{#cantor i=next}} {{> Template.contentBlock}} {{/cantor}}
+                {{#cantor max=max i=next}}
+                    {{> Template.contentBlock}}
+                {{else}}
+                    {{> Template.elseBlock}}
+                {{/cantor}}
+
+                {{> Template.elseBlock}}
+
+                {{#cantor max=max i=next}}
+                    {{> Template.contentBlock}}
+                {{else}}
+                    {{> Template.elseBlock}}
+                {{/cantor}}
             </div>
-        </div>
-    {{/if}}
+        {{/if}}
+    </div>
 </template>
 

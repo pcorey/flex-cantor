@@ -1,5 +1,10 @@
+body {
+    margin:0;
+}
+
 section {
     background-color: tomato;
+    height: 16.66vh;
 }
 
 .flex {
